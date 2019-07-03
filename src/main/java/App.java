@@ -1,15 +1,13 @@
-import dbconnector.PostgresConnector;
-import org.hibernate.Session;
+import dbconnector.InicjalizacjaDanych;
+import widok.WidokOgólny;
 
 public class App {
 
 
     public static void main(String[] args) {
-        Session session = PostgresConnector.getSessionFactory().getCurrentSession();
 
-        session.beginTransaction();
-        session.getTransaction().commit();
-
-
+        InicjalizacjaDanych.inicjalizacjaDanych();
+        WidokOgólny widokOgólny = new WidokOgólny();
+        widokOgólny.wybórRoli();
     }
 }

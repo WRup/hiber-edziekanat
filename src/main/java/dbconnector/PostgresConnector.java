@@ -1,5 +1,6 @@
 package dbconnector;
 
+import model.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -25,6 +26,11 @@ public class PostgresConnector {
                 settings.put(Environment.HBM2DDL_AUTO, "create-drop");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
                 configuration.setProperties(settings);
+                configuration.addAnnotatedClass(Prowadzący.class);
+                configuration.addAnnotatedClass(Przedmiot.class);
+                configuration.addAnnotatedClass(Student.class);
+                configuration.addAnnotatedClass(Zajęcia.class);
+                configuration.addAnnotatedClass(Sala.class);
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
                 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
